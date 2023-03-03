@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+    <head>
+        <title>Toys App GB</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="http://localhost:8080/style.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <div class="container">
+            <form id="newNote" class="newnote_content" th:method="POST" th:action="@{/new}" enctype="multipart/form-data" th:object="${toy}">
+                <label for="city" class="form-field__label">Название</label>
+                <input id="city" type="text" class="form-field__input" th:field="*{name}" name="header"><br>
+                <div class="sql_info_note">
+                    <label for="idMysql" class="form-field__label_id">ID</label>
+                    <input id="idMysql" type="text" class="form-field__input_id" name="idMysql" disabled><br>
+                </div>
+                <label for="quantity" class="form-field__label">Колличество</label>
+                <input id="quantity" type="text" class="form-field__input" th:field="*{quantity}" name="quantity"><br>
+                <label for="probability" class="form-field__label">Вероятность</label>
+                <input id="probability" type="text" class="form-field__input" th:field="*{probability}" name="probability"><br>
+                <input id="files" type="file" class="file_upload" name="fileToUpload" />
+            </form>
+            <button id="json" class="json_button" value="json">Новая карта игрушки</button>
+            <button id="return" class="json_button" value="return">Вернуться в main</button>
+            <div id="noteSavings"></div>
+        </div>
+        <script src="http://localhost:8080/createcard.js" type="module"></script>
+    </body>
+</html>

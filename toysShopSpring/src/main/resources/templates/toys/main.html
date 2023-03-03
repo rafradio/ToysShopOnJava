@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+    <head>
+        <title>Toys App GB</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="http://localhost:8080/style.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <div class="container_toys_main">
+            <div class="title_main"><h2>Список игрушек</h2></div>
+            <div class="list_of_notes" th:if="${toys!=null and !toys.empty}">
+                <div th:each="toy : ${toys}" class="toy_card">
+                    <div class="toy_card_top">
+<!--                        <img class="image_toy" th:src="@{http://localhost:8080/img/Sofia_stic_bw_3.png}" />-->
+                        <img class="image_toy" th:src="@{${toy.getImageSrc()}}">
+                        <div class="image_toy_name" th:text="${toy.getName()}">Название</div>
+                    </div>
+                    <div class="toy_card_bottom">
+                        <div th:text="${toy.getQuantity()}">Колличество</div>
+                        <div>
+                            <input type="checkbox" id="won" name="won" value="won">
+                            <label for="won">Выиграна</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div th:unless="${toys!=null and !toys.empty}"><p>Игрушек нет. Создайте первую игрушку!</p></div>
+            <div class="footer_main">
+                    <div class="new_note"><p>Новая игрушка</p></div>
+            </div>
+        </div>
+        <script src="http://localhost:8080/ScriptForMain.js" type="module"></script>
+    </body>
+</html>
