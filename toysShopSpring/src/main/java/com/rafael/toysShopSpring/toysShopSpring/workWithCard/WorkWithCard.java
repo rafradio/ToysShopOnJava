@@ -4,15 +4,20 @@
  */
 package com.rafael.toysShopSpring.toysShopSpring.workWithCard;
 
+import com.rafael.toysShopSpring.toysShopSpring.models.Toy;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.Part;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.HashMap;
+import java.util.List;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -39,5 +44,22 @@ public class WorkWithCard {
         }
 //        System.out.println("ajax data " + idQuantityMap.get(1));
         return idQuantityMap;
+    }
+    
+    public void printToFile(List<Toy> toys) {
+        String fileName = "C:\\Users\\ASUS\\Documents\\NetBeansProjects\\data_json\\data.txt";
+        Path path = Paths.get(fileName);
+        try 
+            {  
+                Path p = Files.createFile(path);   
+            } 
+        catch (IOException e) {}
+        
+        try {
+            FileWriter myWriter = new FileWriter(fileName);
+            for (int i = 0; i < toys.size(); i++) myWriter.write(toys.get(i).toString() + "\n");
+            myWriter.close();
+        }
+        catch (IOException e) {}  
     }
 }

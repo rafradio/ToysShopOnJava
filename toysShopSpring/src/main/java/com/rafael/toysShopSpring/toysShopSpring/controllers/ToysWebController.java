@@ -34,6 +34,7 @@ public class ToysWebController {
         List<Toy> toys = this.toysDao.main();
         model.addAttribute("toys", toys);
         System.out.println("размер карточек " + toys.size() + "\n");
+     
         return "toys/main";
     }
     
@@ -60,6 +61,14 @@ public class ToysWebController {
         System.out.println("путь до картинки " + toy.getImageSrc() + "\n");
         this.toysDao.saveToy(toy);
         return "redirect:/new";
+    }
+    
+    @PostMapping("/ajaxpost")
+    public String saveTxt(HttpServletRequest request) {
+        List<Toy> toys = this.toysDao.main();
+        this.workWithCard.printToFile(toys);
+        System.out.println("хеллоу fetch");
+        return "redirect:/main";
     }
     
     

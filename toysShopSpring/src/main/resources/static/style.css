@@ -125,9 +125,21 @@ body {
     position: relative;
     flex-direction: row;
     width: 100%;
-    height: 20%;
+    height: 15%;
     align-items: center;
     justify-content: space-around;
+}
+.footer_main_notion {
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    width: 100%;
+    height: 5%;
+    font-size: 20px;
+    align-items: center;
+    justify-content: space-around;
+    padding-left: 20px;
+    color: #3498db;
 }
 .footer_main .new_note {
     display: flex;

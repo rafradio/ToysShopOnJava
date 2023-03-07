@@ -15,6 +15,9 @@ RequestNewToy.prototype.initSettings = function() {
     this.reqButton[1].addEventListener('click', () => {
         this.reduceWonToys();
     });
+    this.reqButton[2].addEventListener('click', () => {
+        this.saveFileOnServer();
+    });
 }
 
 RequestNewToy.prototype.reduceWonToys = function() {
@@ -22,22 +25,23 @@ RequestNewToy.prototype.reduceWonToys = function() {
     let count = 0;
     for (let i = 0; i < this.checkBoxes.length; i++) {
         if (this.checkBoxes[i].checked) {
-            this.checkedFlag = true;
-            count += 1;
-            createQuery += "id" + count + "=" + this.idToy[i].innerHTML + "&";
             let quant = parseInt(this.quantityToy[i].innerHTML) - 1;
-            createQuery += "quantity" + count + "=" + quant + "&";
+            if (quant > -1) {
+                this.checkedFlag = true;
+                count += 1;
+                createQuery += "id" + count + "=" + this.idToy[i].innerHTML + "&";
+                createQuery += "quantity" + count + "=" + quant + "&";
+            }
         }
     }
     createQuery += "length=" + count;
     console.log("no hello world, ", createQuery);
-    this.makeQuery(createQuery);
+    if (this.checkedFlag) this.makeQuery(createQuery);
 }
 
 RequestNewToy.prototype.makeQuery = function(query) {
     let xhr = new XMLHttpRequest();
     xhr.onloadend = function(e) {
-        console.log("hello ajax, ");
         location.href = "http://localhost:8080/main";
     }
     let uri = "http://localhost:8080/main";
@@ -45,6 +49,18 @@ RequestNewToy.prototype.makeQuery = function(query) {
     xhr.open("POST", uri, true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.send(query);
+}
+
+RequestNewToy.prototype.saveFileOnServer = function() {
+    let url = new URL("http://localhost:8080/ajaxpost");
+    fetch(url, {method: 'POST'})
+            .then(response => {
+                document.getElementById("noteSavings").innerHTML = "Данные сохранены";
+                setTimeout(() => {
+                    document.getElementById("noteSavings").innerHTML = "";
+                }, 1200);
+            });
+
 }
 
 const buttonNew = new RequestNewToy();

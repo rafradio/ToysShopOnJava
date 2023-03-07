@@ -62,6 +62,21 @@ public class Toy {
         this.imageSrc = imageSrc;
     }
     
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder()
+                .append(this.getId())
+                .append(", ")
+                .append(this.getName())
+                .append(", ")
+                .append(this.getQuantity())
+                .append(", ")
+                .append(this.getProbability())
+                .append(", ")
+                .append(this.getImageSrc());
+        return sb.toString();
+    }
+    
     
     
 }
