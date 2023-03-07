@@ -37,7 +37,7 @@ public class WorkWithCard {
             idQuantityMap.put(Integer.valueOf(request.getParameter(key1)), 
                             Integer.valueOf(request.getParameter(key2)));
         }
-        System.out.println("ajax data " + idQuantityMap.get(1));
+//        System.out.println("ajax data " + idQuantityMap.get(1));
         return idQuantityMap;
     }
 }

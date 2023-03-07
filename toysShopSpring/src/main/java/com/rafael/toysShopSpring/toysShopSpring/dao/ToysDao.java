@@ -6,7 +6,9 @@ package com.rafael.toysShopSpring.toysShopSpring.dao;
 
 import com.rafael.toysShopSpring.toysShopSpring.models.Toy;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -30,8 +32,12 @@ public class ToysDao {
                 toy.getName(), toy.getQuantity(), toy.getProbability(), toy.getImageSrc());
     }
     
-    public void removeWonToys(Toy toy) {
-        
+    public void removeWonToys(HashMap<Integer, Integer> idQuantityMap) {
+        for (Map.Entry<Integer, Integer> map: idQuantityMap.entrySet()) {
+            System.out.println("ajax data " + map.getValue() + " " + map.getKey());
+            jdbcTemplate.update("UPDATE springtoys SET `quantity`=? WHERE (`id` = ?)",
+                map.getValue(), map.getKey());
+        }
     }
     
     

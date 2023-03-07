@@ -39,9 +39,10 @@ public class ToysWebController {
     
     @PostMapping("/main")
     public String takeQuery(HttpServletRequest request) {
-        String data = request.getParameter("length");
-        
-        this.workWithCard.parseQuery(request);
+//        String data = request.getParameter("length");
+//        
+//        this.workWithCard.parseQuery(request);
+        this.toysDao.removeWonToys(this.workWithCard.parseQuery(request));
         return "redirect:/main";
     }
     
