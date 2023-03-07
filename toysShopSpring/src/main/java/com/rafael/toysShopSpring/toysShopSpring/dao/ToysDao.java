@@ -30,6 +30,10 @@ public class ToysDao {
                 toy.getName(), toy.getQuantity(), toy.getProbability(), toy.getImageSrc());
     }
     
+    public void removeWonToys(Toy toy) {
+        
+    }
+    
     
     
 }

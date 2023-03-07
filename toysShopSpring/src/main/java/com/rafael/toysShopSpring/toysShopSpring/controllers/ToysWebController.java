@@ -37,6 +37,14 @@ public class ToysWebController {
         return "toys/main";
     }
     
+    @PostMapping("/main")
+    public String takeQuery(HttpServletRequest request) {
+        String data = request.getParameter("length");
+        
+        this.workWithCard.parseQuery(request);
+        return "redirect:/main";
+    }
+    
     @GetMapping("/new")
     public String newPage(Model model) {
         model.addAttribute("toy", new Toy());
@@ -52,4 +60,6 @@ public class ToysWebController {
         this.toysDao.saveToy(toy);
         return "redirect:/new";
     }
+    
+    
 }
