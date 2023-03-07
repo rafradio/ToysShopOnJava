@@ -1,0 +1,5 @@
+1, первая игрушка, 6, 50.0, http://localhost:8080/img/Sofia_stic_bw_3.png
+2, Вторая карточка, 9, 30.0, http://localhost:8080/img/Sofia_stic_bw_3.png
+4, Третья игрушка, 9, 30.0, http://localhost:8080/img/Sofia_stic_bw_3.png
+5, четвертая игрушка, 18, 50.0, http://localhost:8080/img/Sofia_stic_bw.png
+6, Кукла, 36, 20.0, http://localhost:8080/img/Sofia_stic_bw_3.png
