@@ -46,7 +46,8 @@ public class WorkWithCard {
         return idQuantityMap;
     }
     
-    public void printToFile(List<Toy> toys) {
+    public String printToFile(List<Toy> toys) {
+        String toysData = "";
         String fileName = "C:\\Users\\ASUS\\Documents\\NetBeansProjects\\data_json\\data.txt";
         Path path = Paths.get(fileName);
         try 
@@ -57,9 +58,14 @@ public class WorkWithCard {
         
         try {
             FileWriter myWriter = new FileWriter(fileName);
-            for (int i = 0; i < toys.size(); i++) myWriter.write(toys.get(i).toString() + "\n");
+            for (int i = 0; i < toys.size(); i++) {
+                toysData += toys.get(i).toString() + "\n";
+                myWriter.write(toys.get(i).toString() + "\n");
+                
+            }
             myWriter.close();
         }
         catch (IOException e) {}  
+        return toysData;
     }
 }

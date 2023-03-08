@@ -17,6 +17,7 @@ RequestNewToy.prototype.initSettings = function() {
     });
     this.reqButton[2].addEventListener('click', () => {
         this.saveFileOnServer();
+        this.testRestApi();
     });
 }
 
@@ -61,6 +62,46 @@ RequestNewToy.prototype.saveFileOnServer = function() {
                 }, 1200);
             });
 
+}
+
+RequestNewToy.prototype.testRestApi = function() {
+    let dataString;
+    let url = new URL("http://localhost:8080/fetchpost");
+    fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            }})
+            .then(response => response.text())
+            .then(data => {
+                dataString = data;
+//                console.log(dataString);
+                let tempLink = document.createElement("a");
+                let taBlob = new Blob([dataString], {type: 'text/plain'});
+                tempLink.setAttribute('href', URL.createObjectURL(taBlob));
+                tempLink.setAttribute('download', `data.txt`);
+                tempLink.click();
+                URL.revokeObjectURL(tempLink.href);
+            });
+    
+    
+    
+//    let xhr = new XMLHttpRequest();
+//    xhr.onloadend = function(e) {
+//        console.log(this.responseText);
+//    }
+//    let uri = "http://localhost:8080/fetchpost";
+//
+//    xhr.open("GET", uri, true);
+//    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+//    xhr.send();
+
+//    let tempLink = document.createElement("a");
+//    let taBlob = new Blob([dataString], {type: 'text/plain'});
+//    tempLink.setAttribute('href', URL.createObjectURL(taBlob));
+//    tempLink.setAttribute('download', `data.txt`);
+//    tempLink.click();
+//    URL.revokeObjectURL(tempLink.href);
 }
 
 const buttonNew = new RequestNewToy();

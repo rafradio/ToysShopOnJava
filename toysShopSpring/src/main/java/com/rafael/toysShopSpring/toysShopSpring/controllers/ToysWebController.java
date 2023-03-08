@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class ToysWebController {
@@ -66,9 +67,17 @@ public class ToysWebController {
     @PostMapping("/ajaxpost")
     public String saveTxt(HttpServletRequest request) {
         List<Toy> toys = this.toysDao.main();
-        this.workWithCard.printToFile(toys);
+        String data = this.workWithCard.printToFile(toys);
         System.out.println("хеллоу fetch");
         return "redirect:/main";
+    }
+    
+    @ResponseBody
+    @GetMapping("/fetchpost")
+    public String testRestApi(){
+        List<Toy> toys = this.toysDao.main();
+        String data = this.workWithCard.printToFile(toys);
+        return data;
     }
     
     
