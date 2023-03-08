@@ -14,7 +14,7 @@
 Папка "data_json" - для txt файлов с данными БД в MySQL.
 * ToysShopSpringApplication.java - main файл для запуска приложения;
 * /src/main/java/com/java/toysShopSpring/toysShopSpring - путь к данному файлу;
-* /controllers - паккидж с контроллерами в которых прописан маппинг;    
+* /controllers - паккидж с контроллерами в которых прописан маппинг, в том числе Rest Api;    
 * /models - модель "игрушка";
 * /dao - класс - обращение к БД MySQL, запись и чтение;
 * /workWithCard - класс в котором прописаны методы по сохранению изображений на сервере<br>
